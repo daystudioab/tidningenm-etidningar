@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Tidningen M – E-tidningar
  * Description:       Egen innehållstyp för e-tidningar med ISSUU-läsare, automatiskt omslag, grid med alla nummer, korsordsfacit och import av befintliga nummer-sidor. Raderar eller ändrar aldrig befintliga sidor.
- * Version:           1.4.1
+ * Version:           1.4.2
  * Update URI:        https://github.com/daystudioab/tidningenm-etidningar
  * Requires at least: 6.0
  * Requires PHP:      7.4
@@ -32,7 +32,7 @@ if ( defined( 'STUDIODAY_GITHUB_TOKEN' ) && STUDIODAY_GITHUB_TOKEN ) {
 	$met_uppdaterare->setAuthentication( STUDIODAY_GITHUB_TOKEN );
 }
 
-define( 'MET_VERSION', '1.4.1' );
+define( 'MET_VERSION', '1.4.2' );
 define( 'MET_CPT', 'etidning' );
 define( 'MET_TAX', 'argang' );
 define( 'MET_SLUG', 'e-tidning' ); // Ger adresser som /e-tidning/nr-2-2026/

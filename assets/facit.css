@@ -11,12 +11,13 @@
 .met-facit-heading { font-size: clamp(26px, 2.4vw, 32px); line-height: 1.2; margin: 0 0 24px; }
 .met-facit-subheading { font-size: 28px; line-height: 1.2; margin: 0 0 .8em; }
 
-/* Senaste facit i full storlek (aldrig bredare än innehållsytan). */
-.met-facit-latest__figure { margin: 0; }
-.met-facit-latest__img {
+/* Senaste facit centrerat, högst 680 px brett så att hela facit ryms på skärmen. */
+.met-facit-latest { text-align: center; }
+.met-facit-latest__figure { margin: 0; display: flex; justify-content: center; }
+.met-facit .met-facit-latest__img {
 	display: block;
 	width: auto;
-	max-width: 100%;
+	max-width: min(100%, 680px);
 	height: auto;
 	box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 6px 18px rgba(0,0,0,.08);
 }
@@ -65,7 +66,17 @@
 	box-shadow: 0 2px 6px rgba(0,0,0,.14), 0 14px 30px rgba(0,0,0,.14);
 }
 .met-facit .met-facit-item:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-.met-facit-item__title { display: block; margin-top: .7em; font-weight: 400; color: #000; }
+/* Nummer under facit och i förstoringen: Manrope, små versaler. */
+.met-facit-item__title,
+.met-facit-lightbox__caption {
+	font-family: "Manrope", sans-serif;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.3;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+.met-facit-item__title { display: block; margin-top: 1em; color: #000; }
 
 /* Förstoring */
 .met-facit-lightbox {
@@ -89,7 +100,7 @@
 	height: auto;
 	background: #fff;
 }
-.met-facit-lightbox__caption { margin-top: 12px; color: #fff; font-family: "Manrope", sans-serif; font-size: 16px; text-align: center; }
+.met-facit-lightbox__caption { margin-top: 12px; color: #fff; text-align: center; }
 .met-facit-lightbox button {
 	position: absolute;
 	margin: 0;

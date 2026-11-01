@@ -298,9 +298,9 @@ function met_facit_shortcode( $atts ) {
 
 	$latest = array_shift( $items );
 	$cols   = max( 1, min( 6, (int) $atts['kolumner'] ) );
-	// Full storlek: bildens egen bredd (högst 1200 px), på mindre skärmar hela bredden.
-	$meta   = wp_get_attachment_metadata( $latest['img'] );
-	$natural = ! empty( $meta['width'] ) ? min( 1200, (int) $meta['width'] ) : 1200;
+	// Visningsbredd: bildens egen bredd, högst 680 px (samma som i facit.css); på mindre skärmar hela bredden.
+	$meta    = wp_get_attachment_metadata( $latest['img'] );
+	$natural = ! empty( $meta['width'] ) ? min( 680, (int) $meta['width'] ) : 680;
 
 	$out  = '<div class="met-facit">';
 	$out .= '<section class="met-facit-latest">';
