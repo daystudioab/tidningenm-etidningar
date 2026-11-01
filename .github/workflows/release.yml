@@ -1,0 +1,50 @@
+# När versionen i tillägget höjs och pushas till main bygger den här rutinen zip-filen
+# och publicerar en GitHub-release (v + versionsnumret). WordPress-sajten hittar
+# releasen via Plugin Update Checker och visar den som en uppdatering.
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Läs versionen i tillägget
+        id: ver
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VER=$(grep -m1 -E '^\s*\*\s*Version:' m-etidningar.php | sed -E 's/.*Version:\s*//' | tr -d '[:space:]')
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+          if gh release view "v$VER" > /dev/null 2>&1; then
+            echo "v$VER finns redan – ingen ny release."
+            echo "ny=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ny=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Bygg zip
+        if: steps.ver.outputs.ny == 'true'
+        run: |
+          mkdir -p build/m-etidningar
+          git archive HEAD | tar -x -C build/m-etidningar
+          cd build && zip -qr m-etidningar.zip m-etidningar
+
+      - name: Publicera release
+        if: steps.ver.outputs.ny == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ steps.ver.outputs.version }}" "build/m-etidningar.zip" \
+            --target "$GITHUB_SHA" \
+            --title "v${{ steps.ver.outputs.version }}" \
+            --notes "$(git log -1 --format=%B | grep -v -E '^(Co-Authored-By|Claude-Session):')"

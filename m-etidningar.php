@@ -2,7 +2,8 @@
 /**
  * Plugin Name:       Tidningen M – E-tidningar
  * Description:       Egen innehållstyp för e-tidningar med ISSUU-läsare, automatiskt omslag, grid med alla nummer och import av befintliga nummer-sidor. Raderar eller ändrar aldrig befintliga sidor.
- * Version:           1.3.0
+ * Version:           1.3.1
+ * Update URI:        https://github.com/daystudioab/tidningenm-etidningar
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Tidningen M
@@ -13,7 +14,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'MET_VERSION', '1.3.0' );
+/**
+ * Uppdateringar från GitHub (daystudioab/tidningenm-etidningar).
+ * Nya versioner publiceras som GitHub-releaser och visas under Tillägg som vanliga uppdateringar.
+ * Privat repo: lägg in en läsnyckel i wp-config.php:
+ *   define( 'STUDIODAY_GITHUB_TOKEN', 'github_pat_…' );
+ */
+require_once __DIR__ . '/lib/plugin-update-checker/plugin-update-checker.php';
+
+$met_uppdaterare = \YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
+	'https://github.com/daystudioab/tidningenm-etidningar/',
+	__FILE__,
+	'm-etidningar'
+);
+$met_uppdaterare->getVcsApi()->enableReleaseAssets( '/m-etidningar\\.zip$/' );
+if ( defined( 'STUDIODAY_GITHUB_TOKEN' ) && STUDIODAY_GITHUB_TOKEN ) {
+	$met_uppdaterare->setAuthentication( STUDIODAY_GITHUB_TOKEN );
+}
+
+define( 'MET_VERSION', '1.3.1' );
 define( 'MET_CPT', 'etidning' );
 define( 'MET_TAX', 'argang' );
 define( 'MET_SLUG', 'e-tidning' ); // Ger adresser som /e-tidning/nr-2-2026/
