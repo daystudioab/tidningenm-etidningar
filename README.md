@@ -2,7 +2,7 @@
 
 WordPress-tillägg för tidningenm.se. Byggt av Studio Day.
 
-E-tidningar som egen innehållstyp: ISSUU-läsare, automatiska omslag, rutnät med alla nummer (`[etidningar]`), import av de gamla nummersidorna och bestående 301-omdirigeringar från gamla adresser.
+E-tidningar som egen innehållstyp: ISSUU-läsare, automatiska omslag, rutnät med alla nummer (`[etidningar]`), korsordsfacit (`[korsordsfacit]`), import av de gamla nummersidorna och bestående 301-omdirigeringar från gamla adresser.
 
 Tillägget ligger i mappen `wp-content/plugins/m-etidningar/` på sajten (zip-filen och mappen heter `m-etidningar`, inte som repot).
 
@@ -21,4 +21,6 @@ Repot är publikt, så sajten hämtar releaser utan nyckel. Om repot görs priva
 
 ## Innehåll
 
+- `includes/facit.php` – korsordsfacit: uppladdning under E-tidningar → Korsordsfacit och kortkoden `[korsordsfacit]`.
+- `assets/vendor/pdfjs/` – [PDF.js](https://github.com/mozilla/pdf.js) 3.11.174 (Apache 2.0), gör om PDF-facit till bild i webbläsaren vid uppladdning.
 - `lib/plugin-update-checker/` – [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker) v5.6 (MIT), sköter uppdateringarna.

@@ -1,0 +1,55 @@
+/* Tidningen M – facit i admin. */
+.met-facit-intro { max-width: 760px; font-size: 14px; }
+.met-facit-list { display: grid; gap: 10px; max-width: 900px; }
+
+.met-facit-slot {
+	display: grid;
+	grid-template-columns: 96px 1fr;
+	gap: 16px;
+	align-items: start;
+	padding: 14px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	transition: border-color .15s, box-shadow .15s;
+}
+.met-facit-slot--featured { grid-template-columns: 220px 1fr; max-width: 900px; padding: 20px; border-width: 2px; }
+.met-facit-slot--compact { display: block; padding: 0; border: 0; }
+.met-facit-slot.is-dragover { border-color: #2271b1; box-shadow: 0 0 0 3px rgba(34, 113, 177, .25); }
+.met-facit-slot.is-busy { opacity: .7; }
+
+.met-facit-preview {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 1 / 1;
+	background: #f6f7f7;
+	border: 1px dashed #c3c4c7;
+	overflow: hidden;
+}
+.met-facit-slot.has-facit .met-facit-preview { border-style: solid; background: #fff; }
+.met-facit-slot--compact .met-facit-preview { margin-bottom: 10px; }
+.met-facit-preview a { display: block; width: 100%; height: 100%; }
+.met-facit-preview img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.met-facit-empty { color: #787c82; font-size: 12px; text-align: center; padding: 6px; }
+
+.met-facit-title { margin: 0 0 10px; font-size: 14px; }
+.met-facit-slot--featured .met-facit-title { font-size: 18px; }
+.met-facit-state { color: #787c82; font-weight: 400; margin-left: 4px; }
+.met-facit-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.met-facit-slot--compact .met-facit-actions .button { flex: 1 1 auto; text-align: center; }
+.met-facit-upload { position: relative; cursor: pointer; }
+.met-facit-upload input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.met-facit-upload:focus-within { box-shadow: 0 0 0 1px #fff, 0 0 0 3px #2271b1; }
+.met-facit-hint { margin: 8px 0 0; color: #787c82; font-size: 12px; }
+.met-facit-status { margin: 6px 0 0; font-size: 13px; }
+.met-facit-status:empty { display: none; }
+.met-facit-status[data-type="success"] { color: #00a32a; }
+.met-facit-status[data-type="error"] { color: #d63638; }
+
+.met-facit-settings { max-width: 900px; }
+.met-facit-settings select { margin: 0 8px; }
+
+@media (max-width: 600px) {
+	.met-facit-slot, .met-facit-slot--featured { grid-template-columns: 72px 1fr; }
+}

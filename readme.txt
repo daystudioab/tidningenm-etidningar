@@ -7,5 +7,7 @@ Nytt nummer:  E-tidningar → Lägg till nummer → titel ("Nr 4 2026") + ISSUU-
 Import:       E-tidningar → Import & inställningar.
 Grid:         [etidningar]   eller   [etidningar oppna="ruta"]
 Läsare:       läggs in automatiskt på /e-tidning/<nummer>/ (eller [etidning_lasare] i egen mall)
+Facit:        E-tidningar → Korsordsfacit → Ladda upp facit (bild eller PDF) på numret.
+              Visas med [korsordsfacit] – senaste överst, tidigare i rutnät som förstoras vid klick.
 
 Tillägget raderar eller ändrar aldrig befintliga sidor. Omdirigering av gamla sidor är avstängd tills du slår på den.
