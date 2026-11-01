@@ -1,0 +1,67 @@
+/* Tidningen M – E-tidningar. Ärver typsnitt och färger från temat. */
+.met-archive { --met-cols: 4; --met-gap: clamp(16px, 2.5vw, 32px); }
+.met-archive .met-year { margin: 2.2em 0 .8em; font-family: "Manrope", sans-serif; letter-spacing: -1px; }
+.met-archive .met-year:first-child { margin-top: 0; }
+.met-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--met-cols), minmax(0, 1fr));
+	gap: var(--met-gap);
+}
+@media (max-width: 1024px) { .met-grid { grid-template-columns: repeat(min(var(--met-cols), 3), minmax(0, 1fr)); } }
+@media (max-width: 767px)  { .met-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.met-archive .met-item,
+.met-archive .met-item:link,
+.met-archive .met-item:visited,
+.met-archive .met-item:hover,
+.met-archive .met-item:active { display: block; color: #000; text-decoration: none; }
+.met-item .met-cover {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 210 / 297; /* A4 – alla omslag får samma höjd */
+	object-fit: cover;
+	background: #eee;
+	box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 6px 18px rgba(0,0,0,.08);
+	transition: transform .25s ease, box-shadow .25s ease;
+}
+.met-item:hover .met-cover,
+.met-item:focus-visible .met-cover {
+	transform: translateY(-4px);
+	box-shadow: 0 2px 6px rgba(0,0,0,.14), 0 14px 30px rgba(0,0,0,.14);
+}
+.met-archive .met-title { display: block; margin-top: .7em; font-weight: 400; color: #000; }
+.met-item:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+/* Nummersidan (Hello Elementor): bredd som sidhuvudets innehåll (1200px), linjerar med loggan */
+body.single-etidning .site-main {
+	max-width: 1200px;
+	width: 100%;
+	margin-inline: auto;
+	padding-inline: 20px;
+	padding-top: clamp(24px, calc(6vw - 40px), 40px);
+	box-sizing: border-box;
+}
+@media (min-width: 1240px) { body.single-etidning .site-main { padding-inline: 0; } }
+body.single-etidning .page-header .entry-title {
+	max-width: none;
+	font-family: "Manrope", sans-serif;
+	letter-spacing: -1px;
+	font-size: clamp(26px, 2.4vw, 32px);
+	margin: 0 0 24px;
+}
+body.single-etidning .met-reader { max-height: 85vh; }
+
+/* Läsaren */
+.met-reader { position: relative; width: 100%; aspect-ratio: 16 / 10; min-height: 420px; background: #f3f3f3; }
+.met-reader iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+@media (max-width: 767px) { .met-reader { aspect-ratio: 3 / 4; min-height: 0; } }
+.met-back { margin-top: 1.5em; }
+
+/* Ruta (oppna="ruta") */
+.met-modal { position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,.82); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.met-modal[hidden] { display: none; }
+.met-modal__inner { position: relative; width: min(1400px, 100%); }
+.met-modal .met-reader { aspect-ratio: auto; height: min(88vh, 900px); min-height: 0; }
+.met-modal__close { position: absolute; top: -44px; right: 0; background: none; border: 0; color: #fff; font-size: 36px; line-height: 1; cursor: pointer; padding: 4px 8px; }
+body.met-modal-open { overflow: hidden; }
