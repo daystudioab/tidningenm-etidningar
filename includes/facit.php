@@ -315,7 +315,6 @@ function met_facit_shortcode( $atts ) {
 
 	if ( $items ) {
 		$out .= '<section class="met-facit-earlier">';
-		$out .= '<h3 class="met-facit-subheading">Tidigare facit</h3>';
 		$out .= sprintf( '<div class="met-facit-grid" style="--met-facit-cols:%d">', $cols );
 		foreach ( $items as $item ) {
 			$full = wp_get_attachment_image_src( $item['img'], 'full' );
